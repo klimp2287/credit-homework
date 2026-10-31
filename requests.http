@@ -1,5 +1,31 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=IntelliJ IDEA
+@baseUrl = http://localhost:8081
 
-###
+### 1. Создать заявку на кредит (одобряемая)
+POST {{baseUrl}}/api/credit-applications
+Content-Type: application/json
+
+{
+  "amount": 300000,
+  "termMonths": 24,
+  "monthlyIncome": 80000,
+  "currentCreditLoad": 10000,
+  "creditRating": 750
+}
+
+### 2. Получить статус заявки
+GET {{baseUrl}}/api/credit-applications/1/status
+
+### 3. Создать заявку на кредит (отклоняемая)
+POST {{baseUrl}}/api/credit-applications
+Content-Type: application/json
+
+{
+  "amount": 1000000,
+  "termMonths": 12,
+  "monthlyIncome": 30000,
+  "currentCreditLoad": 20000,
+  "creditRating": 500
+}
+
+### 4. Получить статус отклоняемой заявки
+GET {{baseUrl}}/api/credit-applications/2/status
